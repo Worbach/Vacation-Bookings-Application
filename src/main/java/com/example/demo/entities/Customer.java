@@ -32,22 +32,22 @@ public class Customer {
     private String address;
 
     @Column(name = "postal_code")
-    private String postalCode;
+    private String postal_code;
 
     @Column(name = "phone")
     private String phone;
 
     @Column(name = "create_date")
     @CreationTimestamp
-    private Date createDate;
+    private Date create_date;
 
     @Column(name = "last_update")
     @UpdateTimestamp
-    private Date lastUpdate;
+    private Date last_update;
 
 
     @ManyToOne
-    @JoinColumn(name = "division_id")
+    @JoinColumn(name = "division_id", nullable = false, insertable = false, updatable = false)
     private Division division;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")

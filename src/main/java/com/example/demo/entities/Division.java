@@ -22,19 +22,19 @@ public class Division {
     private Long id;
 
     @Column(name = "division")
-    private String divisionName;
+    private String division_name;
 
     @Column(name = "create_date")
     @CreationTimestamp
-    private Date createDate;
+    private Date create_date;
 
     @Column(name = "last_update")
     @UpdateTimestamp
-    private Date lastUpdate;
+    private Date last_update;
 
     @ManyToOne
     @JoinColumn(name = "country_id", nullable = false, insertable = false, updatable = false)
-    private Country country;
+    private Country country_id;
 
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "division")
