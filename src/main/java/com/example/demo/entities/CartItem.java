@@ -1,12 +1,17 @@
 package com.example.demo.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+//TODO
+// import java.sql.Date instead?
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -14,30 +19,32 @@ import java.util.Set;
 @Table(name = "cart_items")
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class CartItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cart_item_id")
+    @Column(name = "cart_item_id", nullable = false)
     private Long id;
-
 
     @ManyToOne
     @JoinColumn(name = "vacation_id")
     private Vacation vacation;
 
     @ManyToMany
-    @JoinTable(name = "excursion_cartitem",
-        joinColumns = @JoinColumn(name = "cart_item_id"),
-            inverseJoinColumns = @JoinColumn(name = "excursion_id"))
-    private Set<Excursion> excursions;
-
+    @JoinTable(
+            name = "excursion_cartitem",
+            joinColumns = @JoinColumn(name = "cart_item_id", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "excursion_id", nullable = false)
+    )
+    private Set<Excursion> excursions = new HashSet<>();
 
     @ManyToOne
-    @JoinColumn(name = "cart_id", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "cart_id")
     private Cart cart;
 
-    @Column(name = "create_date")
+    @Column(name = "create_date", updatable = false)
     @CreationTimestamp
     private Date create_date;
 
@@ -45,4 +52,8 @@ public class CartItem {
     @UpdateTimestamp
     private Date last_update;
 
+    public void addExcursion(Excursion excursion) {
+        this.excursions.add(excursion);
+        excursion.getCartItems().add(this);
+    }
 }

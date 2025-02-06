@@ -1,13 +1,14 @@
 package com.example.demo.services;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
-import lombok.Data;
-import lombok.NonNull;
-
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
 public class PurchaseResponse {
 
-    @NonNull
     private String orderTrackingNumber;
 
 }
