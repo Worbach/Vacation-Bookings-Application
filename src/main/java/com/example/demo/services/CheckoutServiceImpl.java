@@ -3,29 +3,21 @@ package com.example.demo.services;
 import com.example.demo.dao.*;
 import com.example.demo.entities.*;
 import jakarta.transaction.Transactional;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 import java.util.UUID;
 
 @Service
+@Transactional
+@AllArgsConstructor
 public class CheckoutServiceImpl implements CheckoutService{
+    private final CustomerRepository customerRepository;
 
-    private CustomerRepository customerRepository;
-    private CartRepository cartRepository;
-    private ExcursionRepository excursionRepository;
-    private CartItemRepository cartItemRepository;
-
-    public CheckoutServiceImpl(CustomerRepository customerRepository, CartRepository cartRepository,
-                               ExcursionRepository excursionRepository, CartItemRepository cartItemRepository) {
-        this.customerRepository = customerRepository;
-        this.cartRepository = cartRepository;
-        this.excursionRepository = excursionRepository;
-        this.cartItemRepository = cartItemRepository;
-    }
+    private final CartRepository cartRepository;
 
     @Override
-    @Transactional
     public PurchaseResponse placeOrder(Purchase purchase) {
         try {
             // Validate order data before proceeding
@@ -36,8 +28,9 @@ public class CheckoutServiceImpl implements CheckoutService{
                 throw new IllegalArgumentException("Customer can't be null and cart items can't be empty.");
             }
 
-            // Retrieve cart and generate tracking number
             Cart cart = purchase.getCart();
+
+            cart.setId(null);
             String orderTrackingNumber = generateOrderTrackingNumber();
             cart.setOrderTrackingNumber(orderTrackingNumber);
 
@@ -47,7 +40,6 @@ public class CheckoutServiceImpl implements CheckoutService{
 
             // Associate cart with customer
             cart.setCustomer(customer);
-//            customer.add(cart);
 
             // Set cart status to 'ordered'
             cart.setStatus(StatusType.ordered);

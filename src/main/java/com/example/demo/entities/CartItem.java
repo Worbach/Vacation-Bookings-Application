@@ -8,8 +8,6 @@ import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-//TODO
-// import java.sql.Date instead?
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -52,8 +50,4 @@ public class CartItem {
     @UpdateTimestamp
     private Date last_update;
 
-    public void addExcursion(Excursion excursion) {
-        this.excursions.add(excursion);
-        excursion.getCartItems().add(this);
-    }
 }

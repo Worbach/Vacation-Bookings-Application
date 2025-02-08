@@ -7,8 +7,6 @@ import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-// TODO
-// java.sql.date??
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;

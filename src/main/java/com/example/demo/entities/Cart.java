@@ -47,7 +47,7 @@ public class Cart {
     private Date last_update;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "customer_id", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cart")

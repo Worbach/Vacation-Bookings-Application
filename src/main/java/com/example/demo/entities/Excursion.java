@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
@@ -43,16 +42,10 @@ public class Excursion {
     @UpdateTimestamp
     private Date last_update;
 
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "vacation_id", nullable = false)
     private Vacation vacation_title;
 
-//    @ManyToMany
-//    @JoinTable(
-//            name="excursion_cartitem",
-//            joinColumns = @JoinColumn(name = "cart_item_id", nullable = false),
-//            inverseJoinColumns = @JoinColumn(name = "excursion_id", nullable = false))
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "excursions")
     private Set<CartItem> cartItems = new HashSet<>();
 
