@@ -24,11 +24,13 @@ public class CheckoutServiceImpl implements CheckoutService{
             Customer customer = purchase.getCustomer();
             Set<CartItem> cartItems = purchase.getCartItems();
 
-            if (customer == null || cartItems == null || cartItems.isEmpty()) {
-                throw new IllegalArgumentException("Customer can't be null and cart items can't be empty.");
+            Cart cart = purchase.getCart();
+
+            if (customer == null || cartItems == null || cartItems.isEmpty() || cart.getParty_size() < 1) {
+                throw new IllegalArgumentException("Customer can't be null, cart items can't be empty, and the party size needs to be greater than 0.");
             }
 
-            Cart cart = purchase.getCart();
+
 
             cart.setId(null);
             String orderTrackingNumber = generateOrderTrackingNumber();
