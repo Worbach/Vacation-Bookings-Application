@@ -1,4 +1,4 @@
-# DCN2 Back-End Application Programming course
+# Vacation Booking Web Application
 
 ## Overview
 
