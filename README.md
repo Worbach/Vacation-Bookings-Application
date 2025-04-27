@@ -47,7 +47,7 @@ This project is a modernized back-end application built using the Spring Framewo
 1. **Clone the Repository**
    ```bash
    git clone https://github.com/Worbach/Vacation-Bookings-Application.git
-   cd dcn2-back-end-application
+   cd <cloned repo directory>
 
 2. Import the Project 
 Open the project in IntelliJ IDEA ensuring all dependencies are resolved.
