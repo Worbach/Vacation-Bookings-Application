@@ -46,7 +46,7 @@ This project is a modernized back-end application built using the Spring Framewo
 
 1. **Clone the Repository**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/Worbach/Vacation-Bookings-Application.git
    cd dcn2-back-end-application
 
 2. Import the Project 
@@ -54,8 +54,8 @@ Open the project in IntelliJ IDEA ensuring all dependencies are resolved.
 
 3. Configure the Database Copy the supplied application.properties into the resources folder if not already present. Verify your MySQL connection settings.
 
-4. Build and Run the Application
-In Terminal:
+4. Build and run the Application
+In terminal:
 mvn spring-boot:run
 
-5. Access the Application The REST API endpoints will be available at http://localhost:8080. Use tools like Postman or your Angular front-end to test the API.
+5. Access the application the REST API endpoints will be available at http://localhost:8080. Use tools like Postman or your Angular front-end to test the API.
