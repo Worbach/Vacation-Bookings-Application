@@ -1,4 +1,4 @@
-# DCN2 Back-End Application Programming
+# DCN2 Back-End Application Programming course
 
 ## Overview
 
