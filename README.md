@@ -1,27 +1,61 @@
-<strong> **DO NOT DISTRIBUTE OR PUBLICLY POST SOLUTIONS TO THESE LABS. MAKE ALL FORKS OF THIS REPOSITORY WITH SOLUTION CODE PRIVATE. PLEASE REFER TO THE STUDENT CODE OF CONDUCT AND ETHICAL EXPECTATIONS FOR COLLEGE OF INFORMATION TECHNOLOGY STUDENTS FOR SPECIFICS. ** </strong>
-# WESTERN GOVERNORS UNIVERSITY 
-## D288 – BACK-END PROGRAMMING
-Welcome to Back-End Programming! This is an opportunity for students to develop object-oriented applications that can be integrated with relational databases, write code for object-oriented applications using Spring framework, and implements design patterns for object-oriented applications. 
-FOR SPECIFIC TASK INSTRUCTIONS AND REQUIREMENTS FOR THIS ASSESSMENT, PLEASE REFER TO THE COURSE PAGE.
-## BASIC INSTRUCTIONS
-For this project, you will be building your project using IntelliJ IDEA (Ultimate Edition) in a WGU-provided lab environment. You will be working with an existing MySQL database and Angular front-end, which are supplied for you in the lab environment. You will share this project to a private external GitLab repository and backup regularly. If you wish to work on it on your local machine, you will also need to download the Angular front-end application and create your own MySQL database. Use the links on your course page to install the integrated development environments (IDE), MySQL WorkBench, and IntelliJ IDEA, and pull the project from the lab environment.  
+# DCN2 Back-End Application Programming
 
+## Overview
 
-## SUPPLEMENTAL RESOURCES  
-1.	How to clone a project to IntelliJ using Git?
+This project is a modernized back-end application built using the Spring Framework. It was developed as part of an academic performance assessment at Western Governors University. The application serves as the back-end for a vacation bookings system used by a travel agency. It replaces a legacy back-end by leveraging Spring Boot, Spring Data JPA, and RESTful web services while connecting to an existing MySQL database.
 
-> Ensure that you have Git installed on your system and that IntelliJ is installed using [Toolbox](https://www.jetbrains.com/toolbox-app/). Make sure that you are using version 2022.3.2. Once this has been confirmed, click the clone button and use the 'IntelliJ IDEA (HTTPS)' button. This will open IntelliJ with a prompt to clone the proejct. Save it in a safe location for the directory and press clone. IntelliJ will prompt you for your credentials. Enter in your WGU Credentials and the project will be cloned onto your local machine.  
+## Key Features
 
-2. How to create a branch and start Development?
+- **Spring Boot Setup**  
+  Created using Spring Initializr with the following dependencies:
+  - Spring Data JPA
+  - Spring Boot Starter Data REST
+  - MySQL Connector/J
+  - Lombok
 
-- GitLab method
-> Press the '+' button located near your branch name. In the dropdown list, press the 'New branch' button. This will allow you to create a name for your branch. Once the branch has been named, you can select 'Create Branch' to push the branch to your repository.
+- **Layered Package Structure**  
+  The project is organized into distinct packages to separate concerns:
+  - **controllers:** Contains REST controllers including the checkout controller with a post mapping to place orders.
+  - **entities:** Houses entity classes and enums as per the provided UML diagrams.
+  - **dao:** Implements repository interfaces extending `JpaRepository` with added cross-origin support.
+  - **services:** Provides business logic including checkout service interfaces and implementations for handling vacation orders.
+  - **config:** Contains configuration classes such as the modified `RestDataConfig.java` and application properties.
 
-- IntelliJ method
-> In IntelliJ, Go to the 'Git' button on the top toolbar. Select the new branch option and create a name for the branch. Make sure checkout branch is selected and press create. You can now add a commit message and push the new branch to the local repo.
+- **Integration with MySQL**  
+  Uses an existing MySQL database by importing the provided `application.properties` for connection configuration.
 
-## SUPPORT
-If you need additional support, please navigate to the course page and reach out to your course instructor.
-## FUTURE USE
-Take this opportunity to create or add to a simple resume portfolio to highlight and showcase your work for future use in career search, experience, and education!
+- **Validation & Cross-Origin Support**  
+  Includes validation logic to enforce inputs from the Angular front-end and enables cross-origin resource sharing for API calls.
 
+- **Sample Data Initialization**  
+  Programmatically adds five sample customers ensuring the data is not overwritten on subsequent runs.
+
+- **Version Control**  
+  The project was continuously committed and pushed to GitLab, maintaining a detailed branch history with commit messages that reflect incremental changes based on the project tasks.
+
+## Getting Started
+
+### Prerequisites
+
+- Java (JDK 11 or later)
+- Maven or Gradle
+- MySQL database instance
+- IntelliJ IDEA (recommended for Spring projects)
+
+### Installation and Execution
+
+1. **Clone the Repository**
+   ```bash
+   git clone <repository-url>
+   cd dcn2-back-end-application
+
+2. Import the Project 
+Open the project in IntelliJ IDEA ensuring all dependencies are resolved.
+
+3. Configure the Database Copy the supplied application.properties into the resources folder if not already present. Verify your MySQL connection settings.
+
+4. Build and Run the Application
+In Terminal:
+mvn spring-boot:run
+
+5. Access the Application The REST API endpoints will be available at http://localhost:8080. Use tools like Postman or your Angular front-end to test the API.
